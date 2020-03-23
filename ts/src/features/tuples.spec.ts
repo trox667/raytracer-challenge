@@ -14,6 +14,11 @@ import {
   normalize,
   dot,
   cross,
+  color,
+  red,
+  green,
+  blue,
+  hadamardProduct,
 } from './tuples'
 import { compareFloat } from '../util'
 
@@ -153,6 +158,40 @@ test('the cross product of two vectors', () => {
   const b = vector(2, 3, 4)
   const r1 = vector(-1, 2, -1)
   const r2 = vector(1, -2, 1)
-  expect(compare(cross(a,b), r1)).toBeTruthy()
-  expect(compare(cross(b,a), r2)).toBeTruthy()
+  expect(compare(cross(a, b), r1)).toBeTruthy()
+  expect(compare(cross(b, a), r2)).toBeTruthy()
+})
+
+test('colors are (red, green, blue) tuples', () => {
+  const c = color(-0.5, 0.4, 1.7)
+  expect(compareFloat(red(c), -0.5))
+  expect(compareFloat(green(c), 0.4))
+  expect(compareFloat(blue(c), 1.7))
+})
+
+test('adding colors', () => {
+  const c1 = color(0.9, 0.6, 0.75)
+  const c2 = color(0.7, 0.1, 0.25)
+  const r = color(1.6, 0.7, 1.0)
+  expect(compare(add(c1, c2), r)).toBeTruthy()
+})
+
+test('subtracting colors', () => {
+  const c1 = color(0.9, 0.6, 0.75)
+  const c2 = color(0.7, 0.1, 0.25)
+  const r = color(0.2, 0.5, 0.5)
+  expect(compare(sub(c1, c2), r)).toBeTruthy()
+})
+
+test('multiplying a color by a scalar', () => {
+  const c = color(0.2, 0.3, 0.4)
+  const r = color(0.4, 0.6, 0.8)
+  expect(compare(multiplyScalar(c, 2), r)).toBeTruthy()
+})
+
+test('multiplying colors', () => {
+  const c1 = color(1, 0.2, 0.4)
+  const c2 = color(0.9, 1, 0.1)
+  const r = color(0.9, 0.2, 0.04)
+  expect(compare(hadamardProduct(c1, c2), r)).toBeTruthy()
 })

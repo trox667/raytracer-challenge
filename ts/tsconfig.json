@@ -3,7 +3,8 @@
     "module": "commonJS",
     "target": "es5",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "downlevelIteration": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]

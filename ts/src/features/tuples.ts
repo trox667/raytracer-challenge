@@ -6,6 +6,7 @@ export interface Tuple {
   z: number
   w: number
 }
+
 export const point = (x: number, y: number, z: number): Tuple =>
   tuple(x, y, z, 1.0)
 
@@ -54,3 +55,13 @@ export const dot = (a: Tuple, b: Tuple) =>
 
 export const cross = (a: Tuple, b: Tuple) =>
   vector(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x)
+
+export const color = (red: number, green: number, blue: number): Tuple => {
+  return { x: red, y: green, z: blue, w: 0 }
+}
+
+export const red = (color: Tuple) => color.x
+export const green = (color: Tuple) => color.y
+export const blue = (color: Tuple) => color.z
+export const hadamardProduct = (c1: Tuple, c2: Tuple) =>
+  color(c1.x * c2.x, c1.y * c2.y, c1.z * c2.z)
