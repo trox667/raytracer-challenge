@@ -24,3 +24,12 @@ export const compare = (a: Tuple, b: Tuple) =>
   compareFloat(a.y, b.y) &&
   compareFloat(a.z, b.z) &&
   compareFloat(a.w, b.w)
+
+export const add = (a: Tuple, b: Tuple) =>
+  tuple(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w)
+  
+export const sub = (a: Tuple, b: Tuple) => 
+  tuple(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w)
+
+export const negate = (a: Tuple) =>
+  sub(vector(0, 0, 0), a)
