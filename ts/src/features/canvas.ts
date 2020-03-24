@@ -38,7 +38,7 @@ export const canvasToPPMHeader = (canvas: Canvas): string => {
 }
 
 export const canvasToPPM = (canvas: Canvas): string => {
-  const transform = (c: number) => clamp(c * 256, 0, 255)
+  const transform = (c: number) => clamp(Math.round(c * 255), 0, 255)
 
   const row = (canvas: Canvas, y: number) => {
     return rangeZero(canvas.width)
@@ -51,26 +51,35 @@ export const canvasToPPM = (canvas: Canvas): string => {
       .trim()
   }
 
-  const keepLength = (line: string): string => {
-    const components = line.split(' ')
-    let count = 0
-    return components
-      .map(component => {
-        if (count + component.length > 69) {
-          component += '\n'
-          count = 0
-        } else {
-          component += ' '
-        }
-      })
-      .join('')
-  }
-
   let s = canvasToPPMHeader(canvas) + '\n'
 
-  s += rangeZero(canvas.height)
-    .map((y: number) => row(canvas, y))
-    .map((r: string) => keepLength(r))
-    .join('\n')
+  s +=
+    rangeZero(canvas.height)
+      .map((y: number) => row(canvas, y))
+      .map((r: string) => keepLength(r))
+      .join('\n') + '\n'
   return s
+}
+
+const keepLength = (line: string): string => {
+  const maxLength = 70
+  if (line.length < maxLength) return line
+
+  const components = line.split(' ')
+  let count = 0
+  let lines = []
+  let s = []
+  for (let c of components) {
+    if (count + c.length + 1 < maxLength) {
+      count += c.length + 1
+      s.push(c)
+    } else {
+      lines.push(s.join(' '))
+      s = [c]
+      count = 0
+    }
+  }
+  if (s.length > 0) lines.push(s.join(' '))
+
+  return lines.join('\n')
 }

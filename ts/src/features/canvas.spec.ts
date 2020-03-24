@@ -44,7 +44,32 @@ test('constructing the ppm pixel data', () => {
     '255',
     '255 0 0 0 0 0 0 0 0 0 0 0 0 0 0',
     '0 0 0 0 0 0 0 128 0 0 0 0 0 0 0',
-    '0 0 0 0 0 0 0 0 0 0 0 0 0 0 255'
+    '0 0 0 0 0 0 0 0 0 0 0 0 0 0 255',
   ].join('\n')
   expect(canvasToPPM(c)).toMatch(r)
+})
+
+test('splitting long lines in PPM files', () => {
+  const c = canvas(10, 2)
+  for (let x = 0; x < 10; x++) {
+    for (let y = 0; y < 2; y++) {
+      writePixel(c, x, y, color(1, 0.8, 0.6))
+    }
+  }
+  const r = [
+    'P3',
+    '10 2',
+    '255',
+    '255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204',
+    '153 255 204 153 255 204 153 255 204 153 255 204 153',
+    '255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204',
+    '153 255 204 153 255 204 153 255 204 153 255 204 153',
+  ].join('\n')
+  expect(canvasToPPM(c)).toMatch(r)
+})
+
+test('ppm files are terminated by a newline character', () => {
+  const c = canvas(5, 3)
+  const ppm = canvasToPPM(c)
+  expect(ppm.charAt(ppm.length-1)).toMatch('\n')
 })
