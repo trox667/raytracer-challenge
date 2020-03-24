@@ -34,23 +34,43 @@ export const getPixel = (canvas: Canvas, x: number, y: number): Tuple => {
 }
 
 export const canvasToPPMHeader = (canvas: Canvas): string => {
-  return `P3
-${canvas.width} ${canvas.height}
-255`
+  return ['P3', '' + canvas.width + ' ' + canvas.height, '255'].join('\n')
 }
 
 export const canvasToPPM = (canvas: Canvas): string => {
   const transform = (c: number) => clamp(c * 256, 0, 255)
-  let s = `${canvasToPPMHeader(canvas)}\n`
-  rangeZero(canvas.height).forEach(y => {
-    let l = ``
-    rangeZero(canvas.width).forEach(x => {
-      const p = getPixel(canvas, x, y)
-      l += `${transform(red(p))} ${transform(green(p))} ${transform(blue(p))}`
-      if (x < canvas.width-1) l += ` `
-    })
-    s += `${l}\n`
-  })
-  console.log(s)
+
+  const row = (canvas: Canvas, y: number) => {
+    return rangeZero(canvas.width)
+      .reduce((text: string, x: number) => {
+        const p = getPixel(canvas, x, y)
+        return `${text} ${transform(red(p))} ${transform(green(p))} ${transform(
+          blue(p)
+        )}`
+      }, '')
+      .trim()
+  }
+
+  const keepLength = (line: string): string => {
+    const components = line.split(' ')
+    let count = 0
+    return components
+      .map(component => {
+        if (count + component.length > 69) {
+          component += '\n'
+          count = 0
+        } else {
+          component += ' '
+        }
+      })
+      .join('')
+  }
+
+  let s = canvasToPPMHeader(canvas) + '\n'
+
+  s += rangeZero(canvas.height)
+    .map((y: number) => row(canvas, y))
+    .map((r: string) => keepLength(r))
+    .join('\n')
   return s
 }

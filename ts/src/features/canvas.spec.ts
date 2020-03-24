@@ -1,5 +1,11 @@
 import { compare, color } from './tuples'
-import { canvas, writePixel, getPixel, canvasToPPM, canvasToPPMHeader } from './canvas'
+import {
+  canvas,
+  writePixel,
+  getPixel,
+  canvasToPPM,
+  canvasToPPMHeader,
+} from './canvas'
 
 test('creating a canvas', () => {
   const c = canvas(10, 20)
@@ -20,9 +26,7 @@ test('writing pixels to a canvas', () => {
 
 test('constructing the ppm header', () => {
   const c = canvas(5, 3)
-  const r = `P3
-5 3
-255`
+  const r = `P3\n5 3\n255`
   expect(canvasToPPMHeader(c)).toBe(r)
 })
 
@@ -34,12 +38,13 @@ test('constructing the ppm pixel data', () => {
   writePixel(c, 0, 0, c1)
   writePixel(c, 2, 1, c2)
   writePixel(c, 4, 2, c3)
-  const r = `P3
-5 3
-255
-255 0 0 0 0 0 0 0 0 0 0 0 0 0 0​
-0 0 0 0 0 0 0 128 0 0 0 0 0 0 0​
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
-​`
-  expect(canvasToPPM(c)).toBe(r)
+  const r = [
+    'P3',
+    '5 3',
+    '255',
+    '255 0 0 0 0 0 0 0 0 0 0 0 0 0 0',
+    '0 0 0 0 0 0 0 128 0 0 0 0 0 0 0',
+    '0 0 0 0 0 0 0 0 0 0 0 0 0 0 255'
+  ].join('\n')
+  expect(canvasToPPM(c)).toMatch(r)
 })
