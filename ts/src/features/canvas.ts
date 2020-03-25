@@ -1,7 +1,7 @@
 import { rangeZero, clamp } from '../util'
 import { color, Tuple, red, green, blue } from './tuples'
 
-interface Canvas {
+export interface Canvas {
   width: number
   height: number
   pixel: Tuple[]

@@ -1,27 +1,27 @@
 import { Tuple, add, normalize, vector } from '../features/tuples'
 
-interface Projectile {
+export interface Projectile {
   position: Tuple
   velocity: Tuple
 }
 
-const projectile = (position: Tuple, velocity: Tuple): Projectile => {
+export const projectile = (position: Tuple, velocity: Tuple): Projectile => {
   return {
     position,
     velocity,
   }
 }
 
-interface Environment {
+export interface Environment {
   gravity: Tuple
   wind: Tuple
 }
 
-const environment = (gravity: Tuple, wind: Tuple): Environment => {
+export const environment = (gravity: Tuple, wind: Tuple): Environment => {
   return { gravity, wind }
 }
 
-const tick = (env: Environment, proj: Projectile): Projectile => {
+export const tick = (env: Environment, proj: Projectile): Projectile => {
   const position = add(proj.position, proj.velocity)
   const velocity = add(add(proj.velocity, env.gravity), env.wind)
   return { position, velocity }
@@ -39,4 +39,4 @@ const run = (t: number = 0, p: Projectile, e: Environment) => {
   return
 }
 
-run(0, p, e)
+// run(0, p, e)
