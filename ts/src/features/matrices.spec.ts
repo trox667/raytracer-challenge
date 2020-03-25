@@ -1,5 +1,5 @@
 import { compareFloat } from '../util'
-import { tuple, compare as compareTuple } from "./tuples";
+import { tuple, compare as compareTuple } from './tuples'
 import {
   matrix4x4,
   matrixAt,
@@ -10,6 +10,9 @@ import {
   transform4,
   identity4x4,
   transpose4x4,
+  determinant,
+  submatrix,
+  minor,
 } from './matrices'
 
 test('constructing and inspecting a 4x4 matrix', () => {
@@ -107,4 +110,28 @@ test('transposing a matrix', () => {
   const a = matrix4x4(0, 9, 3, 0, 9, 8, 0, 8, 1, 8, 5, 3, 0, 0, 5, 8)
   const r = matrix4x4(0, 9, 1, 0, 9, 8, 8, 0, 3, 0, 5, 5, 0, 8, 3, 8)
   expect(compare(transpose4x4(a), r)).toBeTruthy()
+})
+
+test('calculating the determinant of a 2x2 matrix', () => {
+  const a = matrix2x2(1, 5, -3, 2)
+  const A = 17
+  expect(compareFloat(determinant(a), A)).toBeTruthy()
+})
+
+test('a submatrix of a 3x3 matrix is a 2x2 matrix', () => {
+  const a = matrix3x3(1, 5, 0, -3, 2, 7, 0, 6, -3)
+  const r = matrix2x2(-3, 2, 0, 6)
+  expect(compare(submatrix(a, 0, 2), r)).toBeTruthy()
+})
+
+test('a submatrix of a 4x4 matrix is a 3x3 matrix', () => {
+  const a = matrix4x4(-6, 1, 1, 6, -8, 5, 8, 6, -1, 0, 8, 2, -7, 1, -1, 1)
+  const r = matrix3x3(-6, 1, 6, -8, 8, 6, -7, -1, 1)
+  expect(compare(submatrix(a, 2, 1), r)).toBeTruthy()
+})
+
+test('calculating a minor of a 3x3 matrix', () => {
+  const a = matrix3x3(3, 5, 0, 2, -1, -7, 6, -1, 5)
+  const r = 25
+  expect(compareFloat(minor(a, 1, 0), r)).toBeTruthy()
 })

@@ -175,7 +175,8 @@ export const transform4 = (a: Matrix, b: Tuple): Tuple => {
   return tuple(t[0], t[1], t[2], t[3])
 }
 
-export const identity4x4 = (): Matrix => matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+export const identity4x4 = (): Matrix =>
+  matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 
 export const transpose4x4 = (m: Matrix): Matrix => {
   const r = identity4x4()
@@ -187,3 +188,33 @@ export const transpose4x4 = (m: Matrix): Matrix => {
   })
   return r
 }
+
+export const determinant = (m: Matrix): number => {
+  return (
+    matrixAt(m, 0, 0) * matrixAt(m, 1, 1) -
+    matrixAt(m, 0, 1) * matrixAt(m, 1, 0)
+  )
+}
+
+export const submatrix = (a: Matrix, row: number, col: number): Matrix => {
+  let m = []
+
+  rangeZero(a.rowSize).forEach(currRow => {
+    if (row !== currRow) {
+      rangeZero(a.colSize).forEach(currCol => {
+        if (col !== currCol) {
+          m.push(matrixAt(a, currRow, currCol))
+        }
+      })
+    }
+  })
+
+  return {
+    rowSize: a.rowSize - 1,
+    colSize: a.colSize - 1,
+    m,
+  }
+}
+
+export const minor = (a: Matrix, row: number, col: number): number =>
+  determinant(submatrix(a, row, col))
