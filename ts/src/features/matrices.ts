@@ -1,4 +1,4 @@
-import { rangeZero } from '../util'
+import { rangeZero, isOdd, compareFloat } from '../util'
 import { Tuple, tuple } from './tuples'
 
 /**
@@ -140,7 +140,7 @@ export const compare = (a: Matrix, b: Matrix): boolean => {
     a.m.length == b.m.length
   ) {
     for (let i = 0; i < a.m.length; i++) {
-      if (a.m[i] !== b.m[i]) return false
+      if (!compareFloat(a.m[i], b.m[i])) return false
     }
     return true
   }
@@ -190,10 +190,18 @@ export const transpose4x4 = (m: Matrix): Matrix => {
 }
 
 export const determinant = (m: Matrix): number => {
-  return (
-    matrixAt(m, 0, 0) * matrixAt(m, 1, 1) -
-    matrixAt(m, 0, 1) * matrixAt(m, 1, 0)
-  )
+  if (m.rowSize === 2) {
+    return (
+      matrixAt(m, 0, 0) * matrixAt(m, 1, 1) -
+      matrixAt(m, 0, 1) * matrixAt(m, 1, 0)
+    )
+  } else {
+    let d = 0
+    for (let i = 0; i < m.colSize; i++) {
+      d = d + matrixAt(m, 0, i) * cofactor(m, 0, i)
+    }
+    return d
+  }
 }
 
 export const submatrix = (a: Matrix, row: number, col: number): Matrix => {
@@ -218,3 +226,32 @@ export const submatrix = (a: Matrix, row: number, col: number): Matrix => {
 
 export const minor = (a: Matrix, row: number, col: number): number =>
   determinant(submatrix(a, row, col))
+
+export const cofactor = (a: Matrix, row: number, col: number): number => {
+  const m = minor(a, row, col)
+  if (isOdd(row + col)) return -m
+  else return m
+}
+
+export const isInvertible = (a: Matrix): boolean =>
+  !compareFloat(determinant(a), 0)
+
+export const inverse = (a: Matrix): Matrix => {
+  if (!isInvertible) return undefined
+  const d = determinant(a)
+  let m = []
+  rangeZero(a.rowSize * a.colSize).forEach(_ => m.push(0))
+
+  rangeZero(a.rowSize).forEach(row => {
+    rangeZero(a.colSize).forEach(col => {
+      const i = col * a.colSize + row
+      const c = cofactor(a, row, col)
+      m[i] = c / d
+    })
+  })
+  return {
+    m,
+    rowSize: a.rowSize,
+    colSize: a.colSize,
+  }
+}

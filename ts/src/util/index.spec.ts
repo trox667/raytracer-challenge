@@ -1,4 +1,4 @@
-import { compareFloat, rangeZero, clamp } from './index'
+import { compareFloat, rangeZero, clamp, isOdd } from './index'
 
 test('compare float which should be equal', () => {
   const a = 0.003
@@ -26,4 +26,9 @@ test('clamp 256 to 255', () => {
 
 test('clamp -2 to 0', () => {
   expect(clamp(-2, 0, 255)).toBe(0)
+})
+
+test('isOdd', () => {
+  expect(isOdd(1)).toBeTruthy()
+  expect(isOdd(2)).toBeFalsy()
 })
