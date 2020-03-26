@@ -2,7 +2,7 @@ import { rangeZero, isOdd, compareFloat } from '../util'
 import { Tuple, tuple } from './tuples'
 
 /**
- * Matrix storing elements in an array in column major order
+ * Matrix storing elements in an array in row major order
  */
 export interface Matrix {
   m: number[]
@@ -11,7 +11,7 @@ export interface Matrix {
 }
 
 /**
- * Matrix4x4 constructor in column major order
+ * Matrix4x4 constructor in row major order
  * @param m00
  * @param m01
  * @param m02
@@ -72,7 +72,7 @@ export const matrix4x4 = (
 }
 
 /**
- * Matrix2x2 constructor in column major order
+ * Matrix2x2 constructor in row major order
  * @param m00
  * @param m01
  * @param m10
@@ -92,7 +92,7 @@ export const matrix2x2 = (
 }
 
 /**
- * Matrix3x3 constructor in column major order
+ * Matrix3x3 constructor in row major order
  * @param m00
  * @param m01
  * @param m02
@@ -162,6 +162,7 @@ export const mul4x4 = (a: Matrix, b: Matrix): Matrix => {
   })
   return m
 }
+
 
 export const transform4 = (a: Matrix, b: Tuple): Tuple => {
   let t = [0, 0, 0, 0]
