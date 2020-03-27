@@ -10,6 +10,14 @@ export interface Matrix {
   colSize: number
 }
 
+export const clone = (m: Matrix): Matrix => {
+  return {
+    rowSize: m.rowSize,
+    colSize: m.colSize,
+    m: [...m.m]
+  }
+}
+
 /**
  * Matrix4x4 constructor in row major order
  * @param m00
