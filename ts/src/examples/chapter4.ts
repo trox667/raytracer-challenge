@@ -19,7 +19,9 @@ rangeZero(12).forEach(i => {
 
   const p = transform4(rot, twelve)
   const r = add(origin, multiplyScalar(p, 80))
-  writePixel(c, r.x, r.y, white)
+  const ix = Math.round(clamp(r.x, 0, c.width))
+  const iy = Math.round(clamp(c.height - r.y, 0, c.height))
+  writePixel(c, ix, iy, white)
 })
 
 // fs.writeFileSync('chapter4.ppm', canvasToPPM(c), 'utf8')

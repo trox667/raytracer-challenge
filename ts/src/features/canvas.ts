@@ -24,9 +24,7 @@ export const writePixel = (
   y: number,
   color: Tuple
 ) => {
-  const ix = Math.round(clamp(x, 0, canvas.width))
-  const iy = Math.round(clamp(canvas.height - y, 0, canvas.height))
-  const i = index(canvas.width, ix, iy)
+  const i = index(canvas.width, x, y)
   canvas.pixel[i] = color
 }
 
