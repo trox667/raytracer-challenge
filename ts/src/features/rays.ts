@@ -1,5 +1,6 @@
 import { Tuple, add, multiplyScalar, sub, point, dot } from './tuples'
 import { Matrix, transform4, identity4x4, clone, inverse } from './matrices'
+import { Material, material } from './lights'
 
 export interface Ray {
   origin: Tuple
@@ -9,6 +10,7 @@ export interface Ray {
 export interface Sphere {
   origin: Tuple
   transform: Matrix
+  material: Material
 }
 
 export interface Intersection {
@@ -29,7 +31,7 @@ export const intersections = (
 }
 
 export const sphere = () => {
-  return { origin: point(0, 0, 0), transform: identity4x4() }
+  return { origin: point(0, 0, 0), transform: identity4x4(), material: material() }
 }
 
 export const setTransform = (s: Sphere, t: Matrix): void => {
