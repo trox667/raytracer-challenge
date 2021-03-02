@@ -75,3 +75,15 @@ export function normalize(a: Tuple): Result<Tuple> {
   }
   return a.map((v) => v / (m as number)) as Tuple
 }
+
+export function dot(a: Tuple, b: Tuple): Result<number> {
+  return zip(a, b)
+    .map(([a, b]) => a * b)
+    .reduce((acc, v) => acc + v, 0) as number
+}
+
+export function cross(a: Tuple, b: Tuple): Result<Tuple> {
+  const [ax, ay, az] = a
+  const [bx, by, bz] = b
+  return vector(ay * bz - az * by, az * bx - ax * bz, ax * by - ay * bx)
+}

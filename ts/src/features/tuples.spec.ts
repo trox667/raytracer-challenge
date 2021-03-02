@@ -14,6 +14,8 @@ import {
   divScalar as tupleScalarDiv,
   magnitude,
   normalize,
+  dot,
+  cross,
 } from './tuples'
 
 describe('tuples', () => {
@@ -192,5 +194,27 @@ describe('tuples', () => {
     const m = magnitude(r as Tuple)
     expect(isOk(m)).toBeTruthy()
     expect(isFloatEqual(m as number, t)).toBeTruthy()
+  })
+
+  it('The dot product of two tuples', () => {
+    const a = vector(1, 2, 3)
+    const b = vector(2, 3, 4)
+    const t = 20
+    const r = dot(a, b)
+    expect(isOk(r)).toBeTruthy()
+    expect(isFloatEqual(r as number, t)).toBeTruthy()
+  })
+
+  it('The cross product of two vectors', () => {
+    const a = vector(1, 2, 3)
+    const b = vector(2, 3, 4)
+    const t1 = vector(-1, 2, -1)
+    const t2 = vector(1, -2, 1)
+    const r1 = cross(a, b)
+    const r2 = cross(b, a)
+    expect(isOk(r1)).toBeTruthy()
+    expect(isTupleEqual(r1 as Tuple, t1)).toBeTruthy()
+    expect(isOk(r2)).toBeTruthy()
+    expect(isTupleEqual(r2 as Tuple, t2)).toBeTruthy()
   })
 })
