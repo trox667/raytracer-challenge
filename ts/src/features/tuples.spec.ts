@@ -1,4 +1,4 @@
-import { isOk } from '../util'
+import { isOk, isEqual as isFloatEqual } from '../util'
 import {
   isPoint,
   isVector,
@@ -9,6 +9,11 @@ import {
   add as tupleAdd,
   sub as tupleSub,
   negate,
+  tuple,
+  mulScalar as tupleScalarMul,
+  divScalar as tupleScalarDiv,
+  magnitude,
+  normalize,
 } from './tuples'
 
 describe('tuples', () => {
@@ -97,5 +102,95 @@ describe('tuples', () => {
     const r = negate(a)
     expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
+  })
+
+  it('Multiplying a tuple by a scalar', () => {
+    const a = tuple(1, -2, 3, -4)
+    const t = tuple(3.5, -7, 10.5, -14)
+    const r = tupleScalarMul(a, 3.5)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
+  })
+
+  it('Multiplying a tuple by a fraction', () => {
+    const a = tuple(1, -2, 3, -4)
+    const t = tuple(0.5, -1, 1.5, -2)
+    const r = tupleScalarMul(a, 0.5)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
+  })
+
+  it('Dividing a tuple by a scalar', () => {
+    const a = tuple(1, -2, 3, -4)
+    const t = tuple(0.5, -1, 1.5, -2)
+    const r = tupleScalarDiv(a, 2)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
+  })
+
+  it('Computing the magnitude of vector(1,0,0)', () => {
+    const v = vector(1, 0, 0)
+    const t = 1
+    const r = magnitude(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isFloatEqual(r as number, t)).toBeTruthy()
+  })
+
+  it('Computing the magnitude of vector(0,1,0)', () => {
+    const v = vector(0, 1, 0)
+    const t = 1
+    const r = magnitude(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isFloatEqual(r as number, t)).toBeTruthy()
+  })
+
+  it('Computing the magnitude of vector(0,0,1)', () => {
+    const v = vector(0, 0, 1)
+    const t = 1
+    const r = magnitude(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isFloatEqual(r as number, t)).toBeTruthy()
+  })
+
+  it('Computing the magnitude of vector(1,2,3)', () => {
+    const v = vector(1, 2, 3)
+    const t = Math.sqrt(14)
+    const r = magnitude(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isFloatEqual(r as number, t)).toBeTruthy()
+  })
+
+  it('Computing the magnitude of vector(-1,-2,-3)', () => {
+    const v = vector(-1, -2, -3)
+    const t = Math.sqrt(14)
+    const r = magnitude(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isFloatEqual(r as number, t)).toBeTruthy()
+  })
+
+  it('Normalizing vector(4,0,0) gives (1,0,0)', () => {
+    const v = vector(4, 0, 0)
+    const t = vector(1, 0, 0)
+    const r = normalize(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
+  })
+
+  it('Normalizing vector(1,2,3)', () => {
+    const v = vector(1, 2, 3)
+    const t = vector(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14))
+    const r = normalize(v)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
+  })
+
+  it('The magnitude of a normalized vector', () => {
+    const v = vector(1, 2, 3)
+    const t = 1
+    const r = normalize(v)
+    expect(isOk(r)).toBeTruthy()
+    const m = magnitude(r as Tuple)
+    expect(isOk(m)).toBeTruthy()
+    expect(isFloatEqual(m as number, t)).toBeTruthy()
   })
 })
