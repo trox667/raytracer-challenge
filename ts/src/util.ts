@@ -17,3 +17,11 @@ export function isOk<T>(r: Result<T>): boolean {
 export function isErr<T>(r: Result<T>): boolean {
   return !isOk(r)
 }
+
+export function unwrap<T>(r: Result<T>): T {
+    if (isOk(r)) {
+        return r as T
+    } else {
+        throw r as Error
+    }
+}

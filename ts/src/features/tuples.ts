@@ -1,6 +1,8 @@
 import { isEqual as isFloatEqual, isOk, Result, zip } from '../util'
 
 export type Tuple = [number, number, number, number]
+export type Vector = Tuple
+export type Point = Tuple
 
 export function isEqual(a: Tuple, b: Tuple): boolean {
   return zip(a, b).every(([a, b]) => isFloatEqual(a, b))
@@ -10,11 +12,11 @@ export function tuple(x: number, y: number, z: number, w: number): Tuple {
   return [x, y, z, w]
 }
 
-export function point(x: number, y: number, z: number): Tuple {
+export function point(x: number, y: number, z: number): Point {
   return tuple(x, y, z, 1.0)
 }
 
-export function vector(x: number, y: number, z: number): Tuple {
+export function vector(x: number, y: number, z: number): Vector {
   return tuple(x, y, z, 0.0)
 }
 
