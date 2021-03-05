@@ -3,6 +3,7 @@ import { isEqual as isFloatEqual, isOk, Result, zip } from '../util'
 export type Tuple = [number, number, number, number]
 export type Vector = Tuple
 export type Point = Tuple
+export type Color = Tuple
 
 export function isEqual(a: Tuple, b: Tuple): boolean {
   return zip(a, b).every(([a, b]) => isFloatEqual(a, b))
@@ -18,6 +19,10 @@ export function point(x: number, y: number, z: number): Point {
 
 export function vector(x: number, y: number, z: number): Vector {
   return tuple(x, y, z, 0.0)
+}
+
+export function color(r: number, g: number, b: number): Color {
+  return tuple(r, g, b, 0.0)
 }
 
 export function isPoint(t: Tuple): boolean {
@@ -88,4 +93,13 @@ export function cross(a: Tuple, b: Tuple): Result<Tuple> {
   const [ax, ay, az] = a
   const [bx, by, bz] = b
   return vector(ay * bz - az * by, az * bx - ax * bz, ax * by - ay * bx)
+}
+
+export function hadamardProduct(c1: Color, c2: Color): Result<Color> {
+  const [ar, ag, ab] = c1
+  const [br, bg, bb] = c2
+  const r = ar * br
+  const g = ag * bg
+  const b = ab * bb
+  return color(r, g, b)
 }

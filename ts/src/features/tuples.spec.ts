@@ -1,4 +1,4 @@
-import { isOk, isEqual as isFloatEqual } from '../util'
+import { isOk, isEqual as isFloatEqual, unwrap } from '../util'
 import {
   isPoint,
   isVector,
@@ -16,6 +16,9 @@ import {
   normalize,
   dot,
   cross,
+  color,
+  mulScalar,
+  hadamardProduct,
 } from './tuples'
 
 describe('tuples', () => {
@@ -216,5 +219,47 @@ describe('tuples', () => {
     expect(isTupleEqual(r1 as Tuple, t1)).toBeTruthy()
     expect(isOk(r2)).toBeTruthy()
     expect(isTupleEqual(r2 as Tuple, t2)).toBeTruthy()
+  })
+
+  it('Colors are (red, green, blue) tuples', () => {
+    const c = color(-0.5, 0.4, 1.7)
+    expect(isFloatEqual(c[0], -0.5)).toBeTruthy()
+    expect(isFloatEqual(c[1], 0.4)).toBeTruthy()
+    expect(isFloatEqual(c[2], 1.7)).toBeTruthy()
+  })
+
+  it('Adding colors', () => {
+    const c1 = color(0.9, 0.6, 0.75)
+    const c2 = color(0.7, 0.1, 0.25)
+    const t = color(1.6, 0.7, 1.0)
+    const r = tupleAdd(c1, c2)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+  })
+
+  it('Subtracting colors', () => {
+    const c1 = color(0.9, 0.6, 0.75)
+    const c2 = color(0.7, 0.1, 0.25)
+    const t = color(0.2, 0.5, 0.5)
+    const r = tupleSub(c1, c2)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+  })
+
+  it('Multiplying a color by a scalar', () => {
+    const c = color(0.2, 0.3, 0.4)
+    const t = color(0.4, 0.6, 0.8)
+    const r = mulScalar(c, 2)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+  })
+
+  it('Multiplying colors', () => {
+    const c1 = color(1, 0.2, 0.4)
+    const c2 = color(0.9, 1, 0.1)
+    const t = color(0.9, 0.2, 0.04)
+    const r = hadamardProduct(c1, c2)
+    expect(isOk(r)).toBeTruthy()
+    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
   })
 })
