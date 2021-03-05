@@ -1,6 +1,6 @@
 import { isEqual as isFloatEqual, isOk, Result, zip } from '../util'
 
-export type Tuple = [number, number, number, number]
+export type Tuple = [number, number, number, number] | [number, number, number]
 export type Vector = Tuple
 export type Point = Tuple
 export type Color = Tuple
@@ -9,20 +9,24 @@ export function isEqual(a: Tuple, b: Tuple): boolean {
   return zip(a, b).every(([a, b]) => isFloatEqual(a, b))
 }
 
-export function tuple(x: number, y: number, z: number, w: number): Tuple {
+export function tuple4(x: number, y: number, z: number, w: number): Tuple {
   return [x, y, z, w]
 }
 
+export function tuple3(x: number, y: number, z: number): Tuple {
+  return [x, y, z]
+}
+
 export function point(x: number, y: number, z: number): Point {
-  return tuple(x, y, z, 1.0)
+  return tuple4(x, y, z, 1.0)
 }
 
 export function vector(x: number, y: number, z: number): Vector {
-  return tuple(x, y, z, 0.0)
+  return tuple4(x, y, z, 0.0)
 }
 
 export function color(r: number, g: number, b: number): Color {
-  return tuple(r, g, b, 0.0)
+  return tuple3(r, g, b)
 }
 
 export function isPoint(t: Tuple): boolean {
@@ -43,12 +47,33 @@ export function add(a: Tuple, b: Tuple): Result<Tuple> {
 }
 
 export function sub(a: Tuple, b: Tuple): Result<Tuple> {
+  switch (a.length) {
+    case 3:
+      return sub3(a, b)
+    case 4:
+      return sub4(a, b)
+    default:
+      return Error(
+        'Cannot subtract, only Tuples of length 3 or 4 are supported'
+      )
+  }
+}
+
+export function sub4(a: Tuple, b: Tuple): Result<Tuple> {
   const [ax, ay, az, aw] = a
   const [bx, by, bz, bw] = b
   if (aw - bw <= -1.0) {
     return Error('Cannot subtract a point from a vector')
   }
   return [ax - bx, ay - by, az - bz, aw - bw]
+}
+
+export function sub3(a: Tuple, b: Tuple): Result<Tuple> {
+  if (a.length !== 3 || b.length !== 3)
+    return Error('Cannot subtract, values are not length=3')
+  const [ax, ay, az] = a
+  const [bx, by, bz] = b
+  return [ax - bx, ay - by, az - bz]
 }
 
 export function negate(a: Tuple): Result<Tuple> {

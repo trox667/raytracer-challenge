@@ -9,7 +9,7 @@ import {
   add as tupleAdd,
   sub as tupleSub,
   negate,
-  tuple,
+  tuple4,
   mulScalar as tupleScalarMul,
   divScalar as tupleScalarDiv,
   magnitude,
@@ -110,24 +110,24 @@ describe('tuples', () => {
   })
 
   it('Multiplying a tuple by a scalar', () => {
-    const a = tuple(1, -2, 3, -4)
-    const t = tuple(3.5, -7, 10.5, -14)
+    const a = tuple4(1, -2, 3, -4)
+    const t = tuple4(3.5, -7, 10.5, -14)
     const r = tupleScalarMul(a, 3.5)
     expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
   it('Multiplying a tuple by a fraction', () => {
-    const a = tuple(1, -2, 3, -4)
-    const t = tuple(0.5, -1, 1.5, -2)
+    const a = tuple4(1, -2, 3, -4)
+    const t = tuple4(0.5, -1, 1.5, -2)
     const r = tupleScalarMul(a, 0.5)
     expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
   it('Dividing a tuple by a scalar', () => {
-    const a = tuple(1, -2, 3, -4)
-    const t = tuple(0.5, -1, 1.5, -2)
+    const a = tuple4(1, -2, 3, -4)
+    const t = tuple4(0.5, -1, 1.5, -2)
     const r = tupleScalarDiv(a, 2)
     expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
