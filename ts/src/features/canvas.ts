@@ -35,3 +35,27 @@ export function pixelAt(canvas: Canvas, x: number, y: number): Result<Color> {
     return Error(`Cannot get pixel at: ${idx}`)
   }
 }
+
+export function canvasToPPM(canvas: Canvas): string {
+  const header = `P3\n${canvas.width} ${canvas.height}\n255\n`
+  const clamp = (value: number) => Math.min(Math.max(value, 0), 255)
+  let data = ''
+  let i = 0
+  for (const pixel of canvas.pixels) {
+    i++
+    const [r, g, b] = pixel
+    data +=
+      clamp(Math.round(r * 255)) +
+      ' ' +
+      clamp(Math.round(g * 255)) +
+      ' ' +
+      clamp(Math.round(b * 255)) +
+      ' '
+    if (i === canvas.width) {
+      data = data.trimEnd()
+      data += '\n'
+      i = 0
+    }
+  }
+  return header + data
+}
