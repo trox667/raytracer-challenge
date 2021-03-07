@@ -1,4 +1,4 @@
-import { Result } from '../util'
+import { Result, wrap } from '../util'
 import { color, Color } from './tuples'
 
 export type Canvas = {
@@ -39,12 +39,14 @@ export function pixelAt(canvas: Canvas, x: number, y: number): Result<Color> {
 export function canvasToPPM(canvas: Canvas): string {
   const header = `P3\n${canvas.width} ${canvas.height}\n255\n`
   const clamp = (value: number) => Math.min(Math.max(value, 0), 255)
-  let data = ''
+
+  let data = []
+  let line = ''
   let i = 0
   for (const pixel of canvas.pixels) {
     i++
     const [r, g, b] = pixel
-    data +=
+    line +=
       clamp(Math.round(r * 255)) +
       ' ' +
       clamp(Math.round(g * 255)) +
@@ -52,10 +54,12 @@ export function canvasToPPM(canvas: Canvas): string {
       clamp(Math.round(b * 255)) +
       ' '
     if (i === canvas.width) {
-      data = data.trimEnd()
-      data += '\n'
+      line = line.trimEnd()
+      const lines = wrap(line).join('\n')
+      data.push(lines)
+      line = ''
       i = 0
     }
   }
-  return header + data
+  return header + data.join('\n') + '\n'
 }

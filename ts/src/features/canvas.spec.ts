@@ -42,4 +42,34 @@ describe('Canvas', () => {
       `255 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 128 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0 0 0 255\n`
     )
   })
+
+  it('Splitting long lines in PPM files', () => {
+    const c = canvas(10, 2)
+    for (let y = 0; y < 2; y++) {
+      for (let x = 0; x < 10; x++) {
+        writePixel(c, x, y, color(1, 0.8, 0.6))
+      }
+    }
+    const ppm = canvasToPPM(c)
+    const lines = ppm.split('\n')
+    expect(lines[3]).toContain(
+      `255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204`
+    )
+    expect(lines[4]).toContain(
+      `153 255 204 153 255 204 153 255 204 153 255 204 153`
+    )
+    expect(lines[5]).toContain(
+      `255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204`
+    )
+    expect(lines[6]).toContain(
+      `153 255 204 153 255 204 153 255 204 153 255 204 153`
+    )
+  })
+
+  it('PPM files are terminated by a newline character', () => {
+    const c = canvas(5, 3)
+    const ppm = canvasToPPM(c)
+    const lines = ppm.split('\n')
+    expect(lines[lines.length - 1]).toEqual('')
+  })
 })

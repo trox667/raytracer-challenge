@@ -19,9 +19,31 @@ export function isErr<T>(r: Result<T>): boolean {
 }
 
 export function unwrap<T>(r: Result<T>): T {
-    if (isOk(r)) {
-        return r as T
-    } else {
-        throw r as Error
+  if (isOk(r)) {
+    return r as T
+  } else {
+    throw r as Error
+  }
+}
+
+export function wrap(line: string, length: number = 70): string[] {
+  if (line.length > length) {
+    const lines = []
+    const words = line.split(' ')
+    let currLine = words[0]
+    for (let i = 1; i < words.length; i++) {
+      if (currLine.length + 1 + words[i].length > length) {
+        lines.push(currLine)
+        currLine = words[i]
+      } else {
+        currLine = currLine + ' ' + words[i]
+      }
+      if (i == words.length - 1) {
+        lines.push(currLine)
+      }
     }
+    return lines
+  } else {
+    return [line]
+  }
 }
