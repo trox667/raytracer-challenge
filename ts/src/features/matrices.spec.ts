@@ -1,4 +1,5 @@
 import { Matrix2x2, Matrix3x3, Matrix4x4 } from './matrices'
+import { isEqual as isTupleEqual, tuple4 } from './tuples'
 
 describe('Matrix', () => {
   it('Constructing and inspecting a 4x4 matrix', () => {
@@ -54,5 +55,36 @@ describe('Matrix', () => {
     const a = new Matrix4x4(1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2)
     const b = new Matrix4x4(2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2, 1)
     expect(a.equal(b)).toBeFalsy()
+  })
+
+  it('Multiplying two matrices', () => {
+    const a = new Matrix4x4(1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2)
+    const b = new Matrix4x4(-2, 1, 2, 3, 3, 2, 1, -1, 4, 3, 6, 5, 1, 2, 7, 8)
+    const t = new Matrix4x4(
+      20,
+      22,
+      50,
+      48,
+      44,
+      54,
+      114,
+      108,
+      40,
+      58,
+      110,
+      102,
+      16,
+      26,
+      46,
+      42
+    )
+    expect(a.mul(b).equal(t)).toBeTruthy()
+  })
+
+  it('A matrix multiplied by a tuple', () => {
+    const a = new Matrix4x4(1, 2, 3, 4, 2, 4, 4, 2, 8, 6, 4, 1, 0, 0, 0, 1)
+    const b = tuple4(1, 2, 3, 1)
+    const t = tuple4(18, 24, 33, 1)
+    expect(isTupleEqual(a.mulVec(b), t)).toBeTruthy()
   })
 })

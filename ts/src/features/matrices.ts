@@ -1,4 +1,5 @@
 import { isEqual as isFloatEqual } from '../util'
+import { Tuple, tuple4 } from './tuples'
 export class Matrix {
   private data: number[]
 
@@ -22,6 +23,36 @@ export class Matrix {
     return this.data.every((value, i) => {
       return isFloatEqual(value, b.data[i])
     })
+  }
+
+  mul(b: Matrix): Matrix {
+    if (this.rows !== b.columns && this.columns !== b.rows) return
+    const m = new Matrix(this.rows, b.columns)
+
+    for (let r = 0; r < this.rows; r++) {
+      for (let c = 0; c < b.columns; c++) {
+        m.set(
+          r,
+          c,
+          this.at(r, 0) * b.at(0, c) +
+            this.at(r, 1) * b.at(1, c) +
+            this.at(r, 2) * b.at(2, c) +
+            this.at(r, 3) * b.at(3, c)
+        )
+      }
+    }
+    return m
+  }
+
+  mulVec(b: Tuple): Tuple {
+    const [x, y, z, w] = b
+    const m = new Matrix(4, 1)
+    m.set(0, 0, x)
+    m.set(1, 0, y)
+    m.set(2, 0, z)
+    m.set(3, 0, w)
+    const r = this.mul(m)
+    return tuple4(r.at(0, 0), r.at(1, 0), r.at(2, 0), r.at(3, 0))
   }
 }
 
