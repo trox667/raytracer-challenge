@@ -31,14 +31,11 @@ export class Matrix {
 
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < b.columns; c++) {
-        m.set(
-          r,
-          c,
-          this.at(r, 0) * b.at(0, c) +
-            this.at(r, 1) * b.at(1, c) +
-            this.at(r, 2) * b.at(2, c) +
-            this.at(r, 3) * b.at(3, c)
-        )
+        let p = 0
+        for (let i = 0; i < this.rows; i++) {
+          p += this.at(r, i) * b.at(i, c)
+        }
+        m.set(r, c, p)
       }
     }
     return m
@@ -54,6 +51,20 @@ export class Matrix {
     const r = this.mul(m)
     return tuple4(r.at(0, 0), r.at(1, 0), r.at(2, 0), r.at(3, 0))
   }
+
+  transpose(): Matrix {
+    const m = new Matrix(this.columns, this.rows)
+    for (let r = 0; r < this.rows; r++) {
+      for (let c = 0; c < this.columns; c++) {
+        m.set(r, c, this.at(c, r))
+      }
+    }
+    return m
+  }
+}
+
+export function identityMatrix4x4(): Matrix4x4 {
+  return new Matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 }
 
 export class Matrix2x2 extends Matrix {

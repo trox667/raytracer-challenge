@@ -1,4 +1,4 @@
-import { Matrix2x2, Matrix3x3, Matrix4x4 } from './matrices'
+import { identityMatrix4x4, Matrix2x2, Matrix3x3, Matrix4x4 } from './matrices'
 import { isEqual as isTupleEqual, tuple4 } from './tuples'
 
 describe('Matrix', () => {
@@ -86,5 +86,25 @@ describe('Matrix', () => {
     const b = tuple4(1, 2, 3, 1)
     const t = tuple4(18, 24, 33, 1)
     expect(isTupleEqual(a.mulVec(b), t)).toBeTruthy()
+  })
+
+  it('Multiplying a matrix by the identity matrix', () => {
+    const a = new Matrix4x4(0, 1, 2, 4, 1, 2, 4, 8, 2, 4, 8, 16, 4, 8, 16, 32)
+    const identity = identityMatrix4x4()
+    expect(a.mul(identity).equal(a)).toBeTruthy()
+    const b = tuple4(1, 2, 3, 4)
+    expect(isTupleEqual(identity.mulVec(b), b)).toBeTruthy()
+  })
+
+  it('Transposing a matrix', () => {
+    const a = new Matrix4x4(0, 9, 3, 0, 9, 8, 0, 8, 1, 8, 5, 3, 0, 0, 5, 8)
+    const t = new Matrix4x4(0, 9, 1, 0, 9, 8, 8, 0, 3, 0, 5, 5, 0, 8, 3, 8)
+    expect(a.transpose().equal(t)).toBeTruthy()
+  })
+
+  it('Transposing the identity matrix', () => {
+    const identity = identityMatrix4x4()
+    const a = identity.transpose()
+    expect(a.equal(identity)).toBeTruthy()
   })
 })
