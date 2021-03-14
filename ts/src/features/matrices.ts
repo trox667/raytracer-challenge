@@ -75,6 +75,10 @@ export class Matrix2x2 extends Matrix {
     this.set(1, 0, m10)
     this.set(1, 1, m11)
   }
+
+  determinant(): number {
+    return this.at(0, 0) * this.at(1, 1) - this.at(0, 1) * this.at(1, 0)
+  }
 }
 
 export class Matrix3x3 extends Matrix {
@@ -99,6 +103,20 @@ export class Matrix3x3 extends Matrix {
     this.set(2, 0, m20)
     this.set(2, 1, m21)
     this.set(2, 2, m22)
+  }
+
+  submatrix(row: number, column: number): Matrix2x2 {
+    const m = new Matrix2x2(0, 0, 0, 0)
+    for (let r = 0, ir = 0; r < this.rows; r++) {
+      if (r === row) continue
+      for (let c = 0, ic = 0; c < this.columns; c++) {
+        if (c === column) continue
+        m.set(ir, ic, this.at(r, c))
+        ic++
+      }
+      ir++
+    }
+    return m
   }
 }
 
@@ -138,5 +156,19 @@ export class Matrix4x4 extends Matrix {
     this.set(3, 1, m31)
     this.set(3, 2, m32)
     this.set(3, 3, m33)
+  }
+
+  submatrix(row: number, column: number): Matrix3x3 {
+    const m = new Matrix3x3(0, 0, 0, 0, 0, 0, 0, 0, 0)
+    for (let r = 0, ir = 0; r < this.rows; r++) {
+      if (r === row) continue
+      for (let c = 0, ic = 0; c < this.columns; c++) {
+        if (c === column) continue
+        m.set(ir, ic, this.at(r, c))
+        ic++
+      }
+      ir++
+    }
+    return m
   }
 }
