@@ -118,6 +118,16 @@ export class Matrix3x3 extends Matrix {
     }
     return m
   }
+
+  minor(row: number, column: number): number {
+    return this.submatrix(row, column).determinant()
+  }
+
+  cofactor(row: number, column: number): number {
+    const m = this.minor(row, column)
+    if ((row + column) % 2 == 1) return -m
+    else return m
+  }
 }
 
 export class Matrix4x4 extends Matrix {

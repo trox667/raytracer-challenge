@@ -124,4 +124,18 @@ describe('Matrix', () => {
     const b = new Matrix3x3(-6, 1, 6, -8, 8, 6, -7, -1, 1)
     expect(a.submatrix(2, 1).equal(b)).toBeTruthy()
   })
+
+  it('Calculating a minor of a 3x3 matrix', () => {
+    const a = new Matrix3x3(3,5,0,2,-1,-7,6,-1,5)
+    const b = a.submatrix(1,0)
+    expect(b.determinant()).toBe(25)
+    expect(a.minor(1,0)).toBe(25)
+  })
+
+  it('Calculating a cofactor of a 3x3 matrix', () => {
+    const a = new Matrix3x3(3,5,0, 2, -1, -7, 6, -1, 5)
+    expect(a.minor(0,0)).toBe(-12)
+    expect(a.cofactor(0,0)).toBe(-12)
+    expect(a.minor(1,0)).toBe(25)
+  })
 })
