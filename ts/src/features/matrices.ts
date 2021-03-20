@@ -128,6 +128,18 @@ export class Matrix3x3 extends Matrix {
     if ((row + column) % 2 == 1) return -m
     else return m
   }
+
+  determinant(): number {
+    let r = 0
+    for (let i = 0; i < 3; i++) {
+      r += this.at(0, i) * this.cofactor(0, i)
+    }
+    return r
+  }
+
+  isInvertible(): boolean {
+    return this.determinant() != 0
+  }
 }
 
 export class Matrix4x4 extends Matrix {
@@ -180,5 +192,40 @@ export class Matrix4x4 extends Matrix {
       ir++
     }
     return m
+  }
+
+  minor(row: number, column: number): number {
+    return this.submatrix(row, column).determinant()
+  }
+
+  cofactor(row: number, column: number): number {
+    const m = this.minor(row, column)
+    if ((row + column) % 2 == 1) return -m
+    else return m
+  }
+
+  determinant(): number {
+    let r = 0
+    for (let i = 0; i < 4; i++) {
+      r += this.at(0, i) * this.cofactor(0, i)
+    }
+    return r
+  }
+
+  isInvertible(): boolean {
+    return this.determinant() != 0
+  }
+
+  inverse(): Matrix4x4 {
+    const m = new Matrix4x4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    const d = this.determinant()
+
+    for (let r = 0, ir = 0; r < this.rows; r++) {
+      for (let c = 0, ic = 0; c < this.columns; c++) {
+        m.set(c, r, this.cofactor(r, c) / d)
+      }
+    }
+
+    return m as Matrix4x4
   }
 }
