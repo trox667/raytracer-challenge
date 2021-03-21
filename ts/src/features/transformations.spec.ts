@@ -1,4 +1,10 @@
-import { scaling, translation } from './transformations'
+import {
+  rotationX,
+  rotationY,
+  rotationZ,
+  scaling,
+  translation,
+} from './transformations'
 import { point, isEqual as isTupleEqual, vector } from './tuples'
 describe('Transformations', () => {
   it('Multiplying by a translation matrix', () => {
@@ -49,5 +55,53 @@ describe('Transformations', () => {
     const p = point(2, 3, 4)
     const r = point(-2, 3, 4)
     expect(isTupleEqual(transform.mulVec(p), r)).toBeTruthy()
+  })
+
+  it('Rotating a point around the x axis', () => {
+    const p = point(0, 1, 0)
+    const halfQuarter = rotationX(Math.PI / 4)
+    const fullQuarter = rotationX(Math.PI / 2)
+    expect(
+      isTupleEqual(
+        halfQuarter.mulVec(p),
+        point(0, Math.sqrt(2) / 2, Math.sqrt(2) / 2)
+      )
+    )
+    expect(isTupleEqual(fullQuarter.mulVec(p), point(0, 0, 1)))
+  })
+
+  it('The inverse of an x-rotation rotates in the opposite direction', () => {
+    const p = point(0, 1, 0)
+    const halfQuarter = rotationX(Math.PI / 4)
+    const inv = halfQuarter.inverse()
+    expect(
+      isTupleEqual(inv.mulVec(p), point(0, Math.sqrt(2) / 2, -Math.sqrt(2) / 2))
+    )
+  })
+
+  it('Rotating a point around the y axis', () => {
+    const p = point(0, 0, 1)
+    const halfQuarter = rotationY(Math.PI / 4)
+    const fullQuarter = rotationY(Math.PI / 2)
+    expect(
+      isTupleEqual(
+        halfQuarter.mulVec(p),
+        point(Math.sqrt(2) / 2, 0, Math.sqrt(2) / 2)
+      )
+    )
+    expect(isTupleEqual(fullQuarter.mulVec(p), point(1, 0, 0)))
+  })
+
+  it('Rotating a point around the z axis', () => {
+    const p = point(0, 1, 0)
+    const halfQuarter = rotationZ(Math.PI / 4)
+    const fullQuarter = rotationZ(Math.PI / 2)
+    expect(
+      isTupleEqual(
+        halfQuarter.mulVec(p),
+        point(-Math.sqrt(2) / 2, Math.sqrt(2) / 2, 0)
+      )
+    )
+    expect(isTupleEqual(fullQuarter.mulVec(p), point(-1, 0, 0)))
   })
 })
