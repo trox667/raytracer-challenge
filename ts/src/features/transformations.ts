@@ -70,3 +70,14 @@ export function rotationZ(rad: number): Matrix4x4 {
     1
   )
 }
+
+export function shearing(
+  xy: number,
+  xz: number,
+  yx: number,
+  yz: number,
+  zx: number,
+  zy: number
+): Matrix4x4 {
+  return new Matrix4x4(1, xy, xz, 0, yx, 1, yz, 0, zx, zy, 1, 0, 0, 0, 0, 1)
+}

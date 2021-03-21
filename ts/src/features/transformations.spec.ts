@@ -3,6 +3,7 @@ import {
   rotationY,
   rotationZ,
   scaling,
+  shearing,
   translation,
 } from './transformations'
 import { point, isEqual as isTupleEqual, vector } from './tuples'
@@ -103,5 +104,41 @@ describe('Transformations', () => {
       )
     )
     expect(isTupleEqual(fullQuarter.mulVec(p), point(-1, 0, 0)))
+  })
+
+  it('A shearing transformation moves x in proportion to y', () => {
+    const transform = shearing(1, 0, 0, 0, 0, 0)
+    const p = point(2, 3, 4)
+    expect(isTupleEqual(transform.mulVec(p), point(5, 3, 4)))
+  })
+
+  it('A shearing transformation moves x in proportion to z', () => {
+    const transform = shearing(0, 1, 0, 0, 0, 0)
+    const p = point(2, 3, 4)
+    expect(isTupleEqual(transform.mulVec(p), point(6, 3, 4)))
+  })
+
+  it('A shearing transformation moves y in proportion to x', () => {
+    const transform = shearing(0, 0, 1, 0, 0, 0)
+    const p = point(2, 3, 4)
+    expect(isTupleEqual(transform.mulVec(p), point(2, 5, 4)))
+  })
+
+  it('A shearing transformation moves y in proportion to z', () => {
+    const transform = shearing(0, 0, 0, 1, 0, 0)
+    const p = point(2, 3, 4)
+    expect(isTupleEqual(transform.mulVec(p), point(2, 7, 4)))
+  })
+
+  it('A shearing transformation moves z in proportion to x', () => {
+    const transform = shearing(0, 0, 0, 0, 1, 0)
+    const p = point(2, 3, 4)
+    expect(isTupleEqual(transform.mulVec(p), point(2, 3, 6)))
+  })
+
+  it('A shearing transformation moves z in proportion to y', () => {
+    const transform = shearing(0, 0, 0, 0, 1, 0)
+    const p = point(2, 3, 4)
+    expect(isTupleEqual(transform.mulVec(p), point(2, 3, 7)))
   })
 })
