@@ -141,4 +141,29 @@ describe('Transformations', () => {
     const p = point(2, 3, 4)
     expect(isTupleEqual(transform.mulVec(p), point(2, 3, 7)))
   })
+
+  it('Individual transformations are applied in sequence', () => {
+    const p = point(1, 0, 1)
+    const a = rotationX(Math.PI / 2)
+    const b = scaling(5, 5, 5)
+    const c = translation(10, 5, 7)
+
+    const p2 = a.mulVec(p)
+    expect(isTupleEqual(p2, point(1, -1, 0)))
+
+    const p3 = b.mulVec(p2)
+    expect(isTupleEqual(p3, point(5, -5, 0)))
+
+    const p4 = c.mulVec(p3)
+    expect(isTupleEqual(p4, point(15, 0, 7)))
+  })
+
+  it('Chained transformations must be applied in reverse order', () => {
+    const p = point(1, 0, 1)
+    const a = rotationX(Math.PI / 2)
+    const b = scaling(5, 5, 5)
+    const c = translation(10, 5, 7)
+    const t = c.mul(b).mul(a)
+    expect(isTupleEqual(t.mulVec(p), point(15, 0, 7)))
+  })
 })
