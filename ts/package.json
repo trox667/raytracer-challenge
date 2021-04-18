@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --maxWorkers=50%",
+    "test:w": "jest --watch --maxWorkers=25%"
   },
   "keywords": [],
   "author": "",
