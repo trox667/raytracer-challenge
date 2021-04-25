@@ -1,4 +1,3 @@
-import { isOk, unwrap } from '../util'
 import { canvas, canvasToPPM, pixelAt, writePixel } from './canvas'
 import { color, isEqual as isTupleEqual } from './tuples'
 
@@ -19,8 +18,7 @@ describe('Canvas', () => {
     const red = color(1, 0, 0)
     writePixel(c, 2, 3, red)
     const r = pixelAt(c, 2, 3)
-    expect(isOk(r)).toBeTruthy()
-    expect(isTupleEqual(unwrap(r), red)).toBeTruthy()
+    expect(isTupleEqual(r, red)).toBeTruthy()
   })
 
   it('Constructing the PPM header', () => {

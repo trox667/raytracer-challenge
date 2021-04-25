@@ -1,13 +1,12 @@
 import { add, normalize, point, Tuple, vector } from '../features/tuples'
-import { isOk, unwrap } from '../util'
 
 type Projectile = { position: Tuple; velocity: Tuple }
 
 type Environment = { gravity: Tuple; wind: Tuple }
 
 function tick(env: Environment, proj: Projectile): Projectile {
-  const position = unwrap(add(proj.position, proj.velocity))
-  const envVel = unwrap(add(env.gravity, env.wind))
+  const position = add(proj.position, proj.velocity)
+  const envVel = add(env.gravity, env.wind)
   const velocity = add(proj.velocity, envVel as Tuple)
   return { position: position as Tuple, velocity: velocity as Tuple }
 }

@@ -3,7 +3,6 @@ import { color, Point, point, vector, Color } from '../features/tuples'
 import { Canvas, canvas, canvasToPPM, writePixel } from './../features/canvas'
 import { sphere, intersect } from '../features/sphere'
 import { ray } from '../features/rays'
-import { intersections } from '../features/intersections'
 
 const c = canvas(100, 100)
 

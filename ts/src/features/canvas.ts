@@ -1,4 +1,4 @@
-import { Result, wrap } from '../util'
+import { wrap } from '../util'
 import { color, Color } from './tuples'
 
 export type Canvas = {
@@ -27,12 +27,12 @@ export function writePixel(
   }
 }
 
-export function pixelAt(canvas: Canvas, x: number, y: number): Result<Color> {
+export function pixelAt(canvas: Canvas, x: number, y: number): Color {
   const idx = y * canvas.width + x
   if (idx >= 0 && idx < canvas.pixels.length) {
     return [...canvas.pixels[idx]]
   } else {
-    return Error(`Cannot get pixel at: ${idx}`)
+    throw Error(`Cannot get pixel at: ${idx}`)
   }
 }
 

@@ -1,4 +1,3 @@
-import { unwrap } from '../util'
 import { add, mulScalar, Point, Vector } from './tuples'
 import {Matrix4x4} from './matrices'
 
@@ -11,9 +10,8 @@ export function ray(origin: Point, direction: Vector): Ray {
 }
 
 export function position(ray: Ray, t: number): Point {
-  const b = unwrap(mulScalar(ray.direction, t))
-  const a = add(ray.origin, b)
-  return unwrap(a)
+  const b = mulScalar(ray.direction, t)
+  return add(ray.origin, b)
 }
 
 export function transform(ray: Ray, m: Matrix4x4): Ray {

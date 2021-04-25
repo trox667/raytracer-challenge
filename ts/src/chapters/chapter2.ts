@@ -10,7 +10,6 @@ import {
   Tuple,
   vector,
 } from '../features/tuples'
-import { isOk, unwrap } from '../util'
 
 type Projectile = { position: Tuple; velocity: Tuple }
 
@@ -19,8 +18,8 @@ type Environment = { gravity: Tuple; wind: Tuple }
 const c = canvas(900, 550)
 
 function tick(env: Environment, proj: Projectile): Projectile {
-  const position = unwrap(add(proj.position, proj.velocity))
-  const envVel = unwrap(add(env.gravity, env.wind))
+  const position = add(proj.position, proj.velocity)
+  const envVel = add(env.gravity, env.wind)
   const velocity = add(proj.velocity, envVel as Tuple)
   plot(c, position as Point)
   // console.log(position)
@@ -29,7 +28,7 @@ function tick(env: Environment, proj: Projectile): Projectile {
 
 let p: Projectile = {
   position: point(0, 1, 0),
-  velocity: normalize(unwrap(mulScalar(vector(1, 1.8, 0), 11.25))) as Tuple,
+  velocity: normalize(mulScalar(vector(1, 1.8, 0), 11.25)) as Tuple,
 }
 
 const e: Environment = {

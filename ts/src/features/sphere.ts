@@ -1,4 +1,3 @@
-import { unwrap } from '../util'
 import { intersection, Intersection } from './intersections'
 import { Ray, transform } from './rays'
 import { dot, point, sub } from './tuples'
@@ -20,10 +19,10 @@ export function intersect(s: Sphere, r: Ray): Intersection[] {
   const tr = transform(r, i)
   
 
-  const sphereToRay = unwrap(sub(tr.origin, point(0, 0, 0)))
-  const a = unwrap(dot(tr.direction, tr.direction))
-  const b = 2 * unwrap(dot(tr.direction, sphereToRay))
-  const c = unwrap(dot(sphereToRay, sphereToRay)) - 1
+  const sphereToRay = sub(tr.origin, point(0, 0, 0))
+  const a = dot(tr.direction, tr.direction)
+  const b = 2 * dot(tr.direction, sphereToRay)
+  const c = dot(sphereToRay, sphereToRay) - 1
 
   const discriminant = b * b - 4 * a * c
   if (discriminant < 0) return []

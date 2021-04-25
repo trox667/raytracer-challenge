@@ -1,4 +1,4 @@
-import { isOk, isEqual as isFloatEqual, unwrap } from '../util'
+import { isEqual as isFloatEqual} from '../util'
 import {
   isPoint,
   isVector,
@@ -61,7 +61,6 @@ describe('tuples', () => {
     const a2: Tuple = [-2, 3, 1, 0]
     const t: Tuple = [1, 1, 6, 1]
     const r = tupleAdd(a1, a2)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -70,7 +69,6 @@ describe('tuples', () => {
     const a2 = point(5, 6, 7)
     const t = vector(-2, -4, -6)
     const r = tupleSub(a1, a2)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -79,7 +77,6 @@ describe('tuples', () => {
     const v = vector(5, 6, 7)
     const t = point(-2, -4, -6)
     const r = tupleSub(p, v)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -88,7 +85,6 @@ describe('tuples', () => {
     const v2 = vector(5, 6, 7)
     const t = vector(-2, -4, -6)
     const r = tupleSub(v1, v2)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -97,7 +93,6 @@ describe('tuples', () => {
     const v = vector(1, -2, 3)
     const t = vector(-1, 2, -3)
     const r = tupleSub(zero, v)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -105,7 +100,6 @@ describe('tuples', () => {
     const a: Tuple = [1, -2, 3, -4]
     const t: Tuple = [-1, 2, -3, 4]
     const r = negate(a)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -113,7 +107,6 @@ describe('tuples', () => {
     const a = tuple4(1, -2, 3, -4)
     const t = tuple4(3.5, -7, 10.5, -14)
     const r = tupleScalarMul(a, 3.5)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -121,7 +114,6 @@ describe('tuples', () => {
     const a = tuple4(1, -2, 3, -4)
     const t = tuple4(0.5, -1, 1.5, -2)
     const r = tupleScalarMul(a, 0.5)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -129,7 +121,6 @@ describe('tuples', () => {
     const a = tuple4(1, -2, 3, -4)
     const t = tuple4(0.5, -1, 1.5, -2)
     const r = tupleScalarDiv(a, 2)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -137,7 +128,6 @@ describe('tuples', () => {
     const v = vector(1, 0, 0)
     const t = 1
     const r = magnitude(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isFloatEqual(r as number, t)).toBeTruthy()
   })
 
@@ -145,7 +135,6 @@ describe('tuples', () => {
     const v = vector(0, 1, 0)
     const t = 1
     const r = magnitude(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isFloatEqual(r as number, t)).toBeTruthy()
   })
 
@@ -153,7 +142,6 @@ describe('tuples', () => {
     const v = vector(0, 0, 1)
     const t = 1
     const r = magnitude(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isFloatEqual(r as number, t)).toBeTruthy()
   })
 
@@ -161,7 +149,6 @@ describe('tuples', () => {
     const v = vector(1, 2, 3)
     const t = Math.sqrt(14)
     const r = magnitude(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isFloatEqual(r as number, t)).toBeTruthy()
   })
 
@@ -169,7 +156,6 @@ describe('tuples', () => {
     const v = vector(-1, -2, -3)
     const t = Math.sqrt(14)
     const r = magnitude(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isFloatEqual(r as number, t)).toBeTruthy()
   })
 
@@ -177,7 +163,6 @@ describe('tuples', () => {
     const v = vector(4, 0, 0)
     const t = vector(1, 0, 0)
     const r = normalize(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -185,7 +170,6 @@ describe('tuples', () => {
     const v = vector(1, 2, 3)
     const t = vector(1 / Math.sqrt(14), 2 / Math.sqrt(14), 3 / Math.sqrt(14))
     const r = normalize(v)
-    expect(isOk(r)).toBeTruthy()
     expect(isTupleEqual(r as Tuple, t)).toBeTruthy()
   })
 
@@ -193,9 +177,7 @@ describe('tuples', () => {
     const v = vector(1, 2, 3)
     const t = 1
     const r = normalize(v)
-    expect(isOk(r)).toBeTruthy()
     const m = magnitude(r as Tuple)
-    expect(isOk(m)).toBeTruthy()
     expect(isFloatEqual(m as number, t)).toBeTruthy()
   })
 
@@ -204,7 +186,6 @@ describe('tuples', () => {
     const b = vector(2, 3, 4)
     const t = 20
     const r = dot(a, b)
-    expect(isOk(r)).toBeTruthy()
     expect(isFloatEqual(r as number, t)).toBeTruthy()
   })
 
@@ -215,9 +196,7 @@ describe('tuples', () => {
     const t2 = vector(1, -2, 1)
     const r1 = cross(a, b)
     const r2 = cross(b, a)
-    expect(isOk(r1)).toBeTruthy()
     expect(isTupleEqual(r1 as Tuple, t1)).toBeTruthy()
-    expect(isOk(r2)).toBeTruthy()
     expect(isTupleEqual(r2 as Tuple, t2)).toBeTruthy()
   })
 
@@ -233,8 +212,7 @@ describe('tuples', () => {
     const c2 = color(0.7, 0.1, 0.25)
     const t = color(1.6, 0.7, 1.0)
     const r = tupleAdd(c1, c2)
-    expect(isOk(r)).toBeTruthy()
-    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+    expect(isTupleEqual(t, r)).toBeTruthy()
   })
 
   it('Subtracting colors', () => {
@@ -242,16 +220,14 @@ describe('tuples', () => {
     const c2 = color(0.7, 0.1, 0.25)
     const t = color(0.2, 0.5, 0.5)
     const r = tupleSub(c1, c2)
-    expect(isOk(r)).toBeTruthy()
-    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+    expect(isTupleEqual(t, r)).toBeTruthy()
   })
 
   it('Multiplying a color by a scalar', () => {
     const c = color(0.2, 0.3, 0.4)
     const t = color(0.4, 0.6, 0.8)
     const r = mulScalar(c, 2)
-    expect(isOk(r)).toBeTruthy()
-    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+    expect(isTupleEqual(t, r)).toBeTruthy()
   })
 
   it('Multiplying colors', () => {
@@ -259,7 +235,6 @@ describe('tuples', () => {
     const c2 = color(0.9, 1, 0.1)
     const t = color(0.9, 0.2, 0.04)
     const r = hadamardProduct(c1, c2)
-    expect(isOk(r)).toBeTruthy()
-    expect(isTupleEqual(t, unwrap(r))).toBeTruthy()
+    expect(isTupleEqual(t, r)).toBeTruthy()
   })
 })
