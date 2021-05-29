@@ -1,10 +1,11 @@
 import { intersection, Intersection } from './intersections'
 import { Ray, transform } from './rays'
-import { dot, point, sub } from './tuples'
-import {identityMatrix4x4, Matrix4x4} from './matrices'
+import { dot, point, sub, normalize, Point, Vector } from './tuples'
+import { identityMatrix4x4, Matrix4x4 } from './matrices'
 
 export class Sphere {
   public transform: Matrix4x4
+
   constructor() {
     this.transform = identityMatrix4x4()
   }
@@ -17,7 +18,6 @@ export function sphere(): Sphere {
 export function intersect(s: Sphere, r: Ray): Intersection[] {
   const i = s.transform.inverse()
   const tr = transform(r, i)
-  
 
   const sphereToRay = sub(tr.origin, point(0, 0, 0))
   const a = dot(tr.direction, tr.direction)
@@ -31,6 +31,17 @@ export function intersect(s: Sphere, r: Ray): Intersection[] {
   return [intersection(t1, s), intersection(t2, s)]
 }
 
-export function setTransform(s: Sphere, m: Matrix4x4) {
+export function setTransform(s: Sphere, m: Matrix4x4): void {
   s.transform = m
+}
+
+export function normalAt(s: Sphere, p: Point): Vector {
+  console.log(s.transform)
+  const i = s.transform.inverse()
+  const localPoint = i.mulVec(p)
+  const localNormal = sub(localPoint, point(0,0,0))
+  const worldNormal = i.transpose().mulVec(localNormal)
+  worldNormal[3] = 0
+
+  return normalize(worldNormal)
 }

@@ -1,9 +1,9 @@
-import { vector, point } from './tuples'
+import { vector, point, isEqual, normalize } from './tuples'
 import { ray } from './rays'
 import { isEqual as isFloatEqual } from '../util'
-import { setTransform, intersect, sphere } from './sphere'
+import { setTransform, intersect, sphere, normalAt } from './sphere'
 import { identityMatrix4x4 } from './matrices'
-import { translation, scaling } from './transformations'
+import { translation, scaling, rotationZ } from './transformations'
 
 describe('Spheres', () => {
   it('A ray intersects a sphere at two points', () => {
@@ -78,5 +78,58 @@ describe('Spheres', () => {
     setTransform(s, translation(5, 0, 0))
     const xs = intersect(s, r)
     expect(xs.length).toBe(0)
+  })
+
+  it('The normal on a sphere at a point on the x axis', () => {
+    const s = sphere()
+    const n = normalAt(s, point(1, 0, 0))
+    expect(isEqual(n, vector(1, 0, 0))).toBeTruthy()
+  })
+
+  it('The normal on a sphere at a point on the y axis', () => {
+    const s = sphere()
+    const n = normalAt(s, point(0, 1, 0))
+    expect(isEqual(n, vector(0, 1, 0))).toBeTruthy()
+  })
+
+  it('The normal on a sphere at a point on the z axis', () => {
+    const s = sphere()
+    const n = normalAt(s, point(0, 0, 1))
+    expect(isEqual(n, vector(0, 0, 1))).toBeTruthy()
+  })
+
+  it('The normal on a sphere at a nonaxial point', () => {
+    const s = sphere()
+    const n = normalAt(
+      s,
+      point(Math.sqrt(3) / 3, Math.sqrt(3) / 3, Math.sqrt(3) / 3)
+    )
+    expect(
+      isEqual(n, vector(Math.sqrt(3) / 3, Math.sqrt(3) / 3, Math.sqrt(3) / 3))
+    ).toBeTruthy()
+  })
+
+  it('The normal is a normalized vector', () => {
+    const s = sphere()
+    const n = normalAt(
+      s,
+      point(Math.sqrt(3) / 3, Math.sqrt(3) / 3, Math.sqrt(3) / 3)
+    )
+    expect(isEqual(n, normalize(n))).toBeTruthy()
+  })
+
+  it('Computing the normal on a translated sphere', () => {
+    const s = sphere()
+    setTransform(s, translation(0,1,0))
+    const n = normalAt(s, point(0, 1.70711, -0.70711))
+    expect(isEqual(n, vector(0, 0.70711, -0.70711))).toBeTruthy()
+  })
+
+  it('Computing the normal on a transformed sphere', () => {
+    const s = sphere()
+    const m = scaling(1, 0.5, 1).mul(rotationZ(Math.PI/5))
+    setTransform(s, m)
+    const n = normalAt(s, point(0, Math.sqrt(2)/2, -Math.sqrt(2)/2))
+    expect(isEqual(n, vector(0, 0.97014, -0.24254))).toBeTruthy()
   })
 })

@@ -1,0 +1,590 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"st",
+				"stringify\tmethod"
+			],
+			[
+				"prim",
+				"primeSummation\tfunction"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/chapters/chapter5.ts",
+			"settings":
+			{
+				"buffer_size": 1436,
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					""
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Automatic"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Run (with args)..."
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Check"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Test"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Test (with args)..."
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Bench"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Document"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Clippy"
+				],
+				[
+					"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+					"Script"
+				]
+			],
+			[
+				"Packages/Rust Enhanced/RustEnhanced.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"sett",
+				"Preferences: Settings"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"package list",
+				"Package Control: List Packages"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pacl",
+				"Package Control: List Packages"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"form",
+				"JsPrettier: Format Code"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"packag",
+				"Package Control: List Packages"
+			],
+			[
+				"sync se",
+				"Sync Settings: Download"
+			],
+			[
+				"edit user",
+				"Sync Settings: Edit User Settings"
+			],
+			[
+				"lsp ena",
+				"LSP: Enable Language Server Globally"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"convert s",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"prett",
+				"JsPrettier: Format Code"
+			],
+			[
+				"indent",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"format",
+				"JsPrettier: Format Code"
+			],
+			[
+				"jsp",
+				"JsPrettier: Format Code"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"package remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"package li",
+				"Package Control: List Packages"
+			],
+			[
+				"packa inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"list ",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 508.0
+	},
+	"console":
+	{
+		"height": 200.0,
+		"history":
+		[
+			"dir",
+			"ls",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/proggn/raytracer-challenge/ts",
+		"/E/proggn/raytracer-challenge/ts/src",
+		"/E/proggn/raytracer-challenge/ts/src/features"
+	],
+	"file_history":
+	[
+		"/E/proggn/raytracer-challenge/ts/src/features/canvas.spec.ts",
+		"/E/proggn/raytracer-challenge/ts/src/features/tuples.ts",
+		"/G/working/feed_me/TODO.md",
+		"/C/Users/trox667/OneDrive/Thore_8.md",
+		"/E/proggn/lmw/load.js",
+		"/E/proggn/lmw/lmw-admin-2021.2/src/index.js",
+		"/E/proggn/lmw/gql.json",
+		"/E/proggn/lmw/lmw-server-2021.2/server/src/graphql/graphql.js",
+		"/E/proggn/lmw/lmw-admin-2021.2/src/background.js",
+		"/E/proggn/lmw/lmw-server-2021.2/server/src/server.js",
+		"/E/proggn/lmw/lmw-server-2021.2/shared/services/util.js",
+		"/E/proggn/lmw/lmw-server-2021.2/shared/services/xpath.js",
+		"/E/proggn/lmw/lmw-server-2021.2/server/src/util.js",
+		"/E/proggn/rtrs/src/main.rs",
+		"/C/Users/trox667/Desktop/webgl_webgpu.md",
+		"/C/Users/trox667/AppData/Roaming/Sky Ticket/Sky Ticket/resources/app.asar.unpacked/node_modules/@sky-uk-ott/client-lib-electron-videoguard/bin/win32/config.props",
+		"/C/Users/trox667/Desktop/worklog.json",
+		"/E/proggn/events/src/app.ts",
+		"/C/Users/trox667/Desktop/carolin_10.md",
+		"/C/Users/trox667/OneDrive/Lutz_Geb.md",
+		"/C/Users/trox667/OneDrive/ostern2021.md",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.31.1.windows.1/etc/inputrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.30.2.windows.1/etc/bash.bashrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.30.2.windows.1/etc/inputrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.30.1.windows.1/etc/inputrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.30.1.windows.1/etc/bash.bashrc",
+		"/C/Users/trox667/Documents/MOHW/settings/PROF_SAVE_profile",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.30.0.windows.1/etc/inputrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.30.0.windows.1/etc/bash.bashrc",
+		"/C/Users/trox667/Documents/mobilcom_handy.md",
+		"/C/Users/trox667/Documents/My Games/WRC9/UserSettings.cfg",
+		"/C/Users/trox667/OneDrive/weekly_planning2020.md",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.28.0.windows.1/etc/bash.bashrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.29.2.windows.3/etc/bash.bashrc",
+		"/G/Apps/Scoop/apps/git-with-openssh/current/etc/inputrc",
+		"/G/working/gameoflife/js/src/index.ts",
+		"/G/Apps/Scoop/apps/git-with-openssh/2.29.2.windows.2/etc/inputrc",
+		"/C/Users/trox667/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+		"/C/Users/trox667/AppData/Roaming/Sublime Text 3/Packages/User/SyncSettings.sublime-settings",
+		"/C/Users/trox667/OneDrive/hm_0135.json",
+		"/C/Users/trox667/Documents/m.md",
+		"/C/Users/trox667/Documents/Vodafone_Papa.md",
+		"/G/working/freecodecamp/project_euler/7_nthprime.js",
+		"/G/working/freecodecamp/project_euler/10_sumofprimes.js",
+		"/C/Users/trox667/OneDrive/weekly_planning.md",
+		"/G/working/freecodecamp/project_euler/9_specialpythagoreantriplet.js",
+		"/G/working/freecodecamp/project_euler/8_largestproduct.js",
+		"/C/Users/trox667/AppData/Roaming/Sublime Text 3/Packages/TypeScript/Preferences.sublime-settings",
+		"/C/Users/trox667/OneDrive/Marathon_345.md",
+		"/C/Users/trox667/Dropbox/weekly_planning.md",
+		"/C/Windows/Logs/CBS/CBS.log",
+		"/C/Users/trox667/OneDrive/profiles.json",
+		"/C/Users/trox667/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json",
+		"/C/Users/trox667/Desktop/laufen_2019.md",
+		"/C/Users/trox667/Desktop/rma.md",
+		"/C/Users/trox667/OneDrive/Jever_10_2019.md",
+		"/C/Users/trox667/OneDrive/HM_01_50.md",
+		"/G/working/js_wireframe/solution/wireframe-renderer-broadcast/public/index.html",
+		"/G/working/jayti_ts/.vscode/launch.json",
+		"/C/sr/config.yaml",
+		"/G/working/obj_reader/src/lib.rs",
+		"/H/Steam/steamapps/appmanifest_863550.acf",
+		"/C/Users/trox667/_vimrc",
+		"/C/Program Files (x86)/Steam/steamapps/appmanifest_228980.acf",
+		"/C/Users/trox667/Dropbox/weekly_todo.md",
+		"/G/working/automated_evaluation/automated_evaluation/GUI/diff.patch",
+		"/G/working/automated_evaluation/automated_evaluation/GUI/0001-added-diff.patch",
+		"/G/working/litebox3d/bbox_id.patch",
+		"/C/Users/trox667/Dropbox/buf_2018_2019.md",
+		"/G/working/l3dxml/sample_group_2.l3dxml",
+		"/G/working/fsharp/foodify/.gitignore",
+		"/C/Users/trox667/Dropbox/lw_team2_2019",
+		"/C/Users/trox667/Desktop/naming-comments.patch",
+		"/C/Users/trox667/Desktop/msinfo32_lur.txt",
+		"/C/Users/trox667/Desktop/lidl_vegan.md",
+		"/C/Users/trox667/Dropbox/buf_2016.md",
+		"/C/Users/trox667/Desktop/lib.rs",
+		"/C/Users/trox667/Desktop/speedport smart 3",
+		"/C/Users/trox667/Desktop/dhl_pack.md",
+		"/C/Users/trox667/Dropbox/Training 1.csv",
+		"/C/Users/trox667/Dropbox/pizza_kcal.md",
+		"/C/Users/trox667/Dropbox/LW_Lite3D_2019_02.md",
+		"/C/Users/trox667/Documents/Mama & Papa IBAN.md",
+		"/G/working/myvim/plugins.txt",
+		"/C/Program Files (x86)/Vim/vimfiles/bundle/YouCompleteMe/install.py",
+		"/C/Program Files (x86)/Vim/vimfiles/bundle/YouCompleteMe/README.md",
+		"/C/Program Files (x86)/Vim/vimfiles/bundle/nerdcommenter/README.md",
+		"/G/working/gedys_app/Sample.csv",
+		"/C/Program Files (x86)/Vim/vimfiles/bundle/emmet-vim/README.mkd",
+		"/C/Program Files (x86)/Vim/_vimrc",
+		"/C/Users/trox667/Dropbox/advent_of_code.md",
+		"/C/Users/trox667/.ssh/config",
+		"/C/Users/trox667/Desktop/Telekom_Papa.md",
+		"/C/Users/trox667/Desktop/Vodafone_Papa.md",
+		"/G/working/caddox-rs/wavecar.obj",
+		"/G/working/caddox-rs/cube.obj",
+		"/G/working/advent_2018/res/advent18/src/bin/day01.rs",
+		"/G/working/advent_2018/res/advent18/src/lib.rs",
+		"/C/Users/trox667/proggn/rust/image_ops/src/main.rs",
+		"/C/Users/trox667/proggn/rust/image_ops/Cargo.toml",
+		"/G/working/webtasks.md",
+		"/C/Users/trox667/Desktop/Firefox feeds backup.opml",
+		"/C/Users/trox667/Desktop/mobilcom_handy.md",
+		"/C/Users/trox667/proggn/rust/image_ops/build.rs",
+		"/C/Users/trox667/Dropbox/oldenburg_marathon_bilder.md",
+		"/C/Users/trox667/Desktop/Telekom.md",
+		"/C/Users/trox667/Desktop/alles-vegetarisch-bestellung-todo.md",
+		"/C/Users/trox667/Dropbox/vim_cheatsheet.md",
+		"/G/working/litebox3d/visureader_tiff.diff",
+		"/C/Users/trox667/Dropbox/mosaik_2018.md",
+		"/C/Users/trox667/proggn/electron-quickstart/index.html",
+		"/C/Users/trox667/proggn/electron-quickstart/package.json",
+		"/C/Program Files (x86)/Vim/vimfiles/bundle/typescript-vim/README.md",
+		"/G/working/obj/christa_kids_dress/christa kids dress.mtl",
+		"/G/working/obj/christa_kids_dress/christa kids dress.obj",
+		"/G/working/obj/Multi/Multi.mtl",
+		"/G/working/liteimage/input.xml",
+		"/G/working/draco/src/draco/javascript/emscripten/decoder_webidl_wrapper.cc",
+		"/G/working/test.txt",
+		"/G/working/test.html",
+		"/D/working/c_cpp_properties.json",
+		"/G/working/obj/Bulbasaur.obj",
+		"/G/working/obj/dog2.obj",
+		"/G/working/obj/dog.obj",
+		"/G/working/african_head.obj",
+		"/G/working/thunderhawk/thunderhawk.obj",
+		"/G/working/litebox3d/TCA3DNWKS/TCA3DNTiffFw/TCA3DNTiffModel.m/src/TCA3DNTiffImage.cpp",
+		"/G/working/litebox3d/TCA3DNWKS/TCA3DNTiffFw/PublicInterfaces/TCA3DNTiffImage.h"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 145.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/chapters/chapter5.ts",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1436,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								490,
+								490
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.ts"
+								}
+							],
+							"lsp_active": true,
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": true,
+								"indentSize": 2,
+								"tabSize": 2
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 156.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.language servers":
+	{
+		"height": 132.0
+	},
+	"pinned_build_system": "",
+	"project": "rt.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"chapter5",
+				"src\\chapters\\chapter5.ts"
+			],
+			[
+				"8",
+				"project_euler\\8_largestproduct.js"
+			],
+			[
+				"tiffimage",
+				"PublicInterfaces\\TCA3DNTiffImage.h"
+			],
+			[
+				"src\\",
+				"src\\main.rs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 232.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

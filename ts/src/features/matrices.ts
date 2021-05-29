@@ -178,6 +178,22 @@ export class Matrix4x4 extends Matrix {
     this.set(3, 1, m31)
     this.set(3, 2, m32)
     this.set(3, 3, m33)
+  }  
+
+  mul(b: Matrix4x4): Matrix4x4 {
+    if (this.rows !== b.columns && this.columns !== b.rows) return
+    const m = new Matrix4x4(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+    for (let r = 0; r < this.rows; r++) {
+      for (let c = 0; c < b.columns; c++) {
+        let p = 0
+        for (let i = 0; i < this.rows; i++) {
+          p += this.at(r, i) * b.at(i, c)
+        }
+        m.set(r, c, p)
+      }
+    }
+    return m
   }
 
   submatrix(row: number, column: number): Matrix3x3 {
